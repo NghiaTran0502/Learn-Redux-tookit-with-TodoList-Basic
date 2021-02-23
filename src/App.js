@@ -1,56 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import { useSelector } from 'react-redux';
 import './App.css';
+import Input from './components/input';
+import TodoItem from './components/todoItem';
+import { selectTodoList } from './features/todoSlice';
+
 
 function App() {
+
+  const todoList = useSelector(selectTodoList);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div className="todo">
+      <div className="todo__container">
+        <div className="todo_item">
+          {
+            todoList.map(todo =>
+              // todoComponent
+              (<TodoItem name={todo.item} id={todo.id} done={todo.done} key={todo.id} />)
+            )
+          }
+        </div>
+        <Input />
+      </div>
     </div>
   );
 }
