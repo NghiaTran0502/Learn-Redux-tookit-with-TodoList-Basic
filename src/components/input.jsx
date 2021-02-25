@@ -3,12 +3,15 @@ import { useDispatch } from 'react-redux';
 import './input.css'
 
 import { saveTodo } from '../features/todoSlice'
+import { useSnackbar } from 'notistack';
 
 
 
 const Input = () => {
    const [Input, setInput] = useState('');
    const dispatch = useDispatch();
+   const { enqueueSnackbar } = useSnackbar();
+
 
 
    const addTodo = () => {
@@ -20,6 +23,7 @@ const Input = () => {
 
       dispatch(action);
       setInput('');
+      enqueueSnackbar('This is a success message!', { variant: 'success', autoHideDuration: 2000, anchorOrigin: { vertical: 'top', horizontal: "right" } });
    }
 
    return (

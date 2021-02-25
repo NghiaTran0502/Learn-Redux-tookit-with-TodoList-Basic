@@ -1,4 +1,5 @@
 import { Checkbox } from '@material-ui/core';
+import { useSnackbar } from 'notistack';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -8,9 +9,21 @@ import './todoItem.css';
 const TodoItem = (props) => {
    const { name, done, id } = props;
    const dispatch = useDispatch();
+   const { enqueueSnackbar } = useSnackbar();
 
    const handelCheck = () => {
-      dispatch(setCheck(id))
+      dispatch(setCheck(id));
+      enqueueSnackbar(
+         'Done',
+         {
+            variant: 'success',
+            autoHideDuration: 2000,
+            anchorOrigin: {
+               vertical: 'top',
+               horizontal: 'right'
+            }
+         }
+      )
    }
 
    return (

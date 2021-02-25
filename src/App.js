@@ -14,6 +14,7 @@ function App() {
     <div className="todo">
       <div className="todo__container">
         <div className="todo_item">
+          <h2>Todo list</h2>
           {
             todoList.map(todo =>
               // todoComponent
